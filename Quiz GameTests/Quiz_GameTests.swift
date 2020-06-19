@@ -22,6 +22,16 @@ class Quiz_GameTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        let one = StateCapitalQuizGame.USStateItem.init(name: "One", abbreviation: "ABC", capital: "AJK")
+        let two = StateCapitalQuizGame.USStateItem.init(name: "TWO", abbreviation: "DEF", capital: "ALOS")
+        let three = StateCapitalQuizGame.USStateItem.init(name: "THE", abbreviation: "GFI", capital: "SOME")
+        let four = StateCapitalQuizGame.USStateItem.init(name: "FOUR", abbreviation: "XCY", capital: "DNDJ")
+
+        let x = [one, two, three, four]
+
+        let vals = x.nRandomWrongAnswersPlusCorrect(excludedElement: one, numWrongAnswers: 2, keyPath: \.capital)
+        print(vals)
     }
 
     func testPerformanceExample() throws {

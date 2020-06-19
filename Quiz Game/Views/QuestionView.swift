@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  QuestionView.swift
 //  Quiz Game
 //
 //  Created by Charles Pisciotta on 6/19/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct QuestionView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("Hi")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        QuestionView()
     }
 }
