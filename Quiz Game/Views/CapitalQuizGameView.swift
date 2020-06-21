@@ -45,18 +45,21 @@ struct CapitalQuizGameView: View {
                     Spacer()
 
                 }
-            } else if capitalsGame.stateItem != nil {
+            } else if capitalsGame.quizItem != nil {
 
                 VStack(spacing: 30) {
 
-                    Text("What is the capital of \(capitalsGame.stateItem!.content.name)?")
+                    Text("\(capitalsGame.questionNumber) of \(capitalsGame.numberOfQuestions)")
+                        .font(.title)
+
+                    Text(capitalsGame.quizItem!.question)
                         .font(.title)
                         .padding(.horizontal)
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .frame(height: 100)
 
-                    Image(capitalsGame.stateItem!.content.imageName)
+                    Image(capitalsGame.quizItem!.imageName)
                         .resizable()
                         .frame(width: 200, height: 200)
 
@@ -65,7 +68,7 @@ struct CapitalQuizGameView: View {
                 }
 
             } else {
-                Text("Game not over and state item nil")
+                Text("Error! Implement this scenario!")
             }
         }
     }

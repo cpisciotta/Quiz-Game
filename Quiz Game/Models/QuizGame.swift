@@ -8,27 +8,21 @@
 
 import Foundation
 
-struct QuizGame<Content: Equatable> {
+struct QuizGame<Content, T> where T: Equatable {
 
-    private(set) var items: [Item]
-    private var currentIndex: Int = -1
+    private(set) var items: [QuizItem]
 
+    private(set) var currentIndex: Int = -1
     private(set) var isOver: Bool = false
 
 
     // MARK: - Initializer
 
-    init(content: [Content], gameContentFactory: (Content) -> Item) {
+    init(gameContent: [Content], quizGameFactory: (Content) -> QuizItem) {
+        var items = [QuizItem]()
 
-        precondition(!content.isEmpty, "Quiz content must not be empty!")
+        gameContent.forEach { items.append(quizGameFactory($0)) }
 
-        // Initialize an empty local array of quiz items.
-        var items = [Item]()
-
-        // Add each element from content array to the list of items.
-        content.forEach { items.append(gameContentFactory($0)) }
-
-        // Shuffle the order of the items and add them to the items property.
         self.items = items.shuffled()
     }
 
@@ -36,7 +30,7 @@ struct QuizGame<Content: Equatable> {
     // MARK: - Get next item in array
 
     /// Gets the next item from the quiz content array.
-    mutating func getNext() -> Item? {
+    mutating func getNext() -> QuizItem? {
         currentIndex += 1
 
         if items.indices.contains(currentIndex) {
@@ -48,23 +42,17 @@ struct QuizGame<Content: Equatable> {
     }
 
 
-    // MARK: - Check if answer is correct
+    // MARK: - Set Answer
 
-    @discardableResult
-    mutating func checkAnswer(for item: Item, answer: KeyPath<Item, String>, withGuess guess: String) -> Bool {
-
-        let answeredCorrect = item[keyPath: answer].lowercased() == guess.lowercased()
+    mutating func setGuess(for item: QuizItem, as guess: T) {
         let index = items.index(of: item)
-
-        self.items[index].setAnsweredCorrect(to: answeredCorrect)
-
-        return answeredCorrect
+        self.items[index].setGuess(guess)
     }
 
 
     // MARK: - Get answer options
 
-    func getAnswerOptions<T>(excluding item: Item, numWrongOptions: Int, keyPath: KeyPath<Item, T>) -> [T] {
+    func getAnswerOptions<T>(excluding item: QuizItem, numWrongOptions: Int, keyPath: KeyPath<QuizItem, T>) -> [T] {
         return items.nRandomWrongAnswersPlusCorrect(excludedElement: item, numWrongAnswers: numWrongOptions, keyPath: keyPath)
     }
 
@@ -72,38 +60,53 @@ struct QuizGame<Content: Equatable> {
 
 extension QuizGame {
 
-    struct Item: Identifiable {
-        private(set) var id: UUID
-        private(set) var content: Content
-        private(set) var answeredCorrect: Bool?
+    struct QuizItem: Identifiable {
 
-        init(id: UUID = UUID(), content: Content, asked: Bool = false, answeredCorrect: Bool? = nil) {
-            self.id = id
-            self.content = content
-            self.answeredCorrect = answeredCorrect
+        private(set) var id: UUID = .init()
+
+        let question: String
+        let answer: T
+
+        private(set) var guess: T? = nil
+
+        var answeredCorrect: Bool? {
+            if let guess = guess {
+                return guess == answer
+            } else {
+                return nil
+            }
         }
 
-        mutating func setAnsweredCorrect(to value: Bool) {
-            self.answeredCorrect = value
+        let imageName: String
+
+        init(question: String, answer: T, imageName: String) {
+            self.question = question
+            self.answer = answer
+            self.imageName = imageName
+        }
+
+        mutating func setGuess(_ guess: T) {
+            self.guess = guess
         }
     }
-
 }
 
-extension QuizGame.Item: Equatable {
+extension QuizGame.QuizItem: Equatable {
 
-    static func ==(lhs: QuizGame.Item, rhs: QuizGame.Item) -> Bool {
+    static func ==(lhs: QuizGame.QuizItem, rhs: QuizGame.QuizItem) -> Bool {
         return lhs.id == rhs.id
     }
 
 }
 
-extension QuizGame.Item: CustomDebugStringConvertible {
+extension QuizGame.QuizItem: CustomDebugStringConvertible {
 
     var debugDescription: String {
         """
-        \(content)
-        
+        Question: \(self.question)
+        Correct Answer: \(self.answer)
+        Guess: \(String(describing: self.guess))
+        Answered Correct?: \(String(describing: self.answeredCorrect))
         """
     }
 
