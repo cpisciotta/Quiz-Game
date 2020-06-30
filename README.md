@@ -3,7 +3,7 @@ A sample quiz game using SwiftUI, Combine, and MVVM.
 
 ## Note
 
-This is an ongoing project to demonstrate some of the capabilities of SwiftUI and Combine as new updates come to Xcode 12 and SwiftUI 2.0.
+This project will eventually use SwiftUI 2.0 and Xcode 12.
 
 ## State Quiz Game
 <p align="center">
