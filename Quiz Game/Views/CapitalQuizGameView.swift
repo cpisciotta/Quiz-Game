@@ -47,14 +47,16 @@ struct CapitalQuizGameView: View {
                 }
             } else if capitalsGame.quizItem != nil {
 
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
 
                     Text("\(capitalsGame.questionNumber) of \(capitalsGame.numberOfQuestions)")
                         .font(.title)
 
+                    TimeLeftView(timeLeft: $capitalsGame.timeLeft)
+
                     Text(capitalsGame.quizItem!.question)
                         .font(.title)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 15)
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .frame(height: 100)
@@ -66,7 +68,6 @@ struct CapitalQuizGameView: View {
                     AnswerButtons(capitalsGame: capitalsGame, answers: capitalsGame.answerOptions, selectedOption: $selectedOption)
 
                 }
-
             } else {
                 Text("Error! Implement this scenario!")
             }

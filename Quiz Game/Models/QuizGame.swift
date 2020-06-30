@@ -88,6 +88,7 @@ extension QuizGame {
         mutating func setGuess(_ guess: T) {
             self.guess = guess
         }
+
     }
 }
 

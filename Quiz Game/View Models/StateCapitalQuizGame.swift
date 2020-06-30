@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class StateCapitalQuizGame: ObservableObject {
 
@@ -29,7 +30,6 @@ class StateCapitalQuizGame: ObservableObject {
         Float(quizGame.items.filter { $0.answeredCorrect == true }.count) / Float(quizGame.items.count)
     }
 
-
     // MARK: - File Constants
 
     private static let filename: String = "states_array"
@@ -40,6 +40,7 @@ class StateCapitalQuizGame: ObservableObject {
     init() {
         self.quizGame = StateCapitalQuizGame.createStateCapitalQuizGame()
         self.getNext()
+        self.start()
     }
 
 
@@ -48,6 +49,7 @@ class StateCapitalQuizGame: ObservableObject {
     func startGame() {
         self.quizGame = StateCapitalQuizGame.createStateCapitalQuizGame()
         getNext()
+        self.start()
     }
 
 
@@ -57,8 +59,10 @@ class StateCapitalQuizGame: ObservableObject {
         if let item = quizGame.getNext() {
             self.quizItem = item
             self.answerOptions = quizGame.getAnswerOptions(excluding: item, numWrongOptions: 3, keyPath: \.answer)
+            self.timeLeft = 5
         } else {
             self.quizItem = nil
+            self.timer?.cancel()
         }
     }
 
@@ -67,6 +71,21 @@ class StateCapitalQuizGame: ObservableObject {
         getNext()
     }
 
+    private(set) var timer: AnyCancellable?
+
+    @Published var timeLeft: Int = 5
+
+    private func start() {
+        timer = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink(receiveValue: { _ in
+                if self.timeLeft > 0 {
+                    self.timeLeft -= 1
+                } else {
+                    self.getNext()
+                }
+            })
+    }
 }
 
 extension StateCapitalQuizGame {

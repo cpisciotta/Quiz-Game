@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6A186FB9249D32BD00611FB5 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A186FB8249D32BD00611FB5 /* GameButton.swift */; };
-		6A186FBF249D3C4000611FB5 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A186FBE249D3C4000611FB5 /* QuestionView.swift */; };
 		6A186FC3249D5F4D00611FB5 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A186FC2249D5F4D00611FB5 /* Color+Ext.swift */; };
 		6A4C095924A01C5B0092C617 /* USState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C095824A01C5B0092C617 /* USState.swift */; };
 		6A4F3DBE249D23A900E42D23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F3DBD249D23A900E42D23 /* AppDelegate.swift */; };
@@ -24,6 +23,7 @@
 		6A4F3DF8249D23DF00E42D23 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F3DF3249D23DE00E42D23 /* Array+Ext.swift */; };
 		6A4F3DF9249D23DF00E42D23 /* states_array.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4F3DF4249D23DE00E42D23 /* states_array.json */; };
 		6A4F3DFA249D23DF00E42D23 /* StateCapitalQuizGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F3DF5249D23DE00E42D23 /* StateCapitalQuizGame.swift */; };
+		6ABB76F424A1000A009252FC /* TimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB76F324A1000A009252FC /* TimeLeftView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		6A186FB8249D32BD00611FB5 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
-		6A186FBE249D3C4000611FB5 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		6A186FC2249D5F4D00611FB5 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		6A4C095824A01C5B0092C617 /* USState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USState.swift; sourceTree = "<group>"; };
 		6A4F3DBA249D23A900E42D23 /* Quiz Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +66,7 @@
 		6A4F3DF3249D23DE00E42D23 /* Array+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		6A4F3DF4249D23DE00E42D23 /* states_array.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states_array.json; sourceTree = "<group>"; };
 		6A4F3DF5249D23DE00E42D23 /* StateCapitalQuizGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCapitalQuizGame.swift; sourceTree = "<group>"; };
+		6ABB76F324A1000A009252FC /* TimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLeftView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,7 @@
 			children = (
 				6A4F3DF2249D23DE00E42D23 /* CapitalQuizGameView.swift */,
 				6A186FB8249D32BD00611FB5 /* GameButton.swift */,
-				6A186FBE249D3C4000611FB5 /* QuestionView.swift */,
+				6ABB76F324A1000A009252FC /* TimeLeftView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,10 +351,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A186FBF249D3C4000611FB5 /* QuestionView.swift in Sources */,
 				6A4F3DF6249D23DF00E42D23 /* FileLoader.swift in Sources */,
 				6A186FB9249D32BD00611FB5 /* GameButton.swift in Sources */,
 				6A4F3DBE249D23A900E42D23 /* AppDelegate.swift in Sources */,
+				6ABB76F424A1000A009252FC /* TimeLeftView.swift in Sources */,
 				6A4F3DF0249D23D800E42D23 /* QuizGame.swift in Sources */,
 				6A4C095924A01C5B0092C617 /* USState.swift in Sources */,
 				6A4F3DC0249D23A900E42D23 /* SceneDelegate.swift in Sources */,
