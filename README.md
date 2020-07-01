@@ -1,5 +1,5 @@
 # Quiz-Game
-A sample quiz game using SwiftUI, Combine, and MVVM.
+A quiz game for a future tutorial using SwiftUI and MVVM.
 
 ## Note
 
